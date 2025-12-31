@@ -1,0 +1,82 @@
+
+.page-title{ font-size: 22px; font-weight: 800; letter-spacing:.2px; margin: 2px 0 14px; }
+.muted{ opacity:.75; }
+.grid{ display:grid; gap:14px; }
+.cards{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+@media (max-width: 1200px){ .cards{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 700px){ .cards{ grid-template-columns: 1fr; } }
+.card{
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  border-radius: 18px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 16px 36px rgba(0,0,0,.28);
+}
+.card h3{ margin:0; font-size:12px; opacity:.75; }
+.card .big{ font-size: 28px; font-weight: 800; margin-top: 6px; }
+.toolbar{
+  display:flex; gap:10px; align-items:center; flex-wrap: wrap;
+  margin: 12px 0 14px;
+}
+.input, .select{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.20);
+  color:#e5e7eb;
+}
+.btn{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color:#e5e7eb;
+  cursor:pointer;
+}
+.btn:hover{ background: rgba(255,255,255,.10); }
+.btn.danger{ border-color: rgba(248,113,113,.35); background: rgba(248,113,113,.10); }
+.table{
+  width:100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+.table th{
+  text-align:left;
+  font-size:12px;
+  opacity:.70;
+  padding: 0 12px;
+}
+.row{
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.table td{
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.table td:first-child{
+  border-left: 1px solid rgba(255,255,255,.10);
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+.table td:last-child{
+  border-right: 1px solid rgba(255,255,255,.10);
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  font-size:12px;
+}
+.error{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(248,113,113,.35);
+  background: rgba(248,113,113,.10);
+}

@@ -1,0 +1,98 @@
+<div class="page">
+  <header class="hero">
+    <div class="hero-left">
+      <div class="kicker">Museum Audio Guide</div>
+      <h1>Control Center</h1>
+      <p>Manage exhibits, users, bookmarks and playback history — all in one place.</p>
+
+      <div class="actions">
+        <a class="btn primary" routerLink="/exhibits">+ New Exhibit</a>
+        <a class="btn" routerLink="/users">+ New User</a>
+        <a class="btn ghost" routerLink="/logs">View Logs</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="pill">API Key Security</div>
+      <div class="pill">Angular Routing</div>
+      <div class="pill">Async CRUD</div>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="card">
+      <div class="label">Exhibits</div>
+      <div class="value">{{ stats.exhibits }}</div>
+      <div class="sub">Audio-enabled entries</div>
+    </div>
+
+    <div class="card">
+      <div class="label">Users</div>
+      <div class="value">{{ stats.users }}</div>
+      <div class="sub">Registered visitors</div>
+    </div>
+
+    <div class="card">
+      <div class="label">Bookmarks</div>
+    <div class="value">{{ stats.bookmarks }}</div>
+      <div class="sub">Saved timestamps</div>
+    </div>
+
+    <div class="card">
+      <div class="label">Logs</div>
+      <div class="value">{{ stats.logs }}</div>
+      <div class="sub">Playback activity</div>
+    </div>
+  </section>
+
+  <section class="panels">
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Recent Playback</h2>
+        <a routerLink="/logs" class="link">Open logs →</a>
+      </div>
+
+      <div class="empty" *ngIf="recentLogs.length === 0">
+        No logs yet. Play an exhibit to generate activity.
+      </div>
+
+      <div class="list" *ngIf="recentLogs.length > 0">
+        <div class="item" *ngFor="let l of recentLogs">
+          <div class="item-main">
+            <div class="item-title">{{ l.exhibitTitle || l.exhibitId }}</div>
+            <div class="item-sub">
+              User: {{ l.userName || l.userId }} · Lang: {{ l.language }} · {{ l.timestamp }}
+            </div>
+          </div>
+          <span class="tag">LOG</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Quick Search</h2>
+        <a routerLink="/exhibits" class="link">Browse exhibits →</a>
+      </div>
+
+      <label class="field-label">Search (frontend only)</label>
+      <input class="input" [(ngModel)]="search" placeholder="Type exhibit title..." />
+
+      <div class="info">
+        <div class="info-row">
+          <span class="muted">Top language</span>
+          <strong>{{ topLanguage || "—" }}</strong>
+        </div>
+        <div class="info-row">
+          <span class="muted">Most bookmarked</span>
+          <strong>{{ mostBookmarked || "—" }}</strong>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" routerLink="/bookmarks">Bookmarks</a>
+        <a class="btn ghost" routerLink="/users">Users</a>
+      </div>
+    </div>
+  </section>
+</div>

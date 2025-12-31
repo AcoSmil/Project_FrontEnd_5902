@@ -1,0 +1,57 @@
+<div class="page-title">Bookmarks</div>
+<div class="muted">Join data across users ↔ exhibits. Create bookmarks by picking IDs (backend maps them).</div>
+
+<div class="toolbar">
+  <input class="input" placeholder="Search bookmarks…" [(ngModel)]="q" />
+  <button class="btn" (click)="loadAll()">Reload all</button>
+  <button class="btn" (click)="newBookmark()">New bookmark</button>
+</div>
+
+<div class="card">
+  <h3 style="margin:0 0 10px;">Create bookmark</h3>
+
+  <div class="grid" style="grid-template-columns: repeat(3, minmax(0,1fr));">
+    <input class="input" placeholder="bookmarkId" [(ngModel)]="form.bookmarkId" />
+
+    <select class="select" [(ngModel)]="form.userId">
+      <option value="">Select user…</option>
+      <option *ngFor="let u of users" [value]="u.userId">{{ u.name }} ({{ u.userId }})</option>
+    </select>
+
+    <select class="select" [(ngModel)]="form.exhibitId">
+      <option value="">Select exhibit…</option>
+      <option *ngFor="let e of exhibits" [value]="e.exhibitId">{{ e.name }} ({{ e.exhibitId }})</option>
+    </select>
+  </div>
+
+  <div class="toolbar" style="margin-top:12px;">
+    <button class="btn" (click)="create()">Create</button>
+    <span class="badge">timestamp: {{ form.timestamp }}</span>
+  </div>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+</div>
+
+<table class="table" style="margin-top:14px;">
+  <thead>
+    <tr>
+      <th>Bookmark ID</th>
+      <th>User</th>
+      <th>Exhibit</th>
+      <th>Timestamp</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="row" *ngFor="let b of filtered">
+      <td><span class="badge">{{ b.bookmarkId }}</span></td>
+      <td>{{ userName(b.userId) || '(missing user)' }}</td>
+      <td>{{ exhibitName(b.exhibitId) || '(missing exhibit)' }}</td>
+      <td class="muted">{{ b.timestamp }}</td>
+      <td>
+        <button class="btn danger" (click)="remove(b.bookmarkId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

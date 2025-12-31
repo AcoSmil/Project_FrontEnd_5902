@@ -1,0 +1,46 @@
+<div class="page-title">Users</div>
+<div class="muted">Manage users (create + delete) and search.</div>
+
+<div class="toolbar">
+  <input class="input" placeholder="Search users…" [(ngModel)]="q" />
+  <button class="btn" (click)="load()">Reload</button>
+  <button class="btn" (click)="newUser()">New user</button>
+</div>
+
+<div class="card">
+  <h3 style="margin:0 0 10px;">Create user</h3>
+
+  <div class="grid" style="grid-template-columns: repeat(3, minmax(0,1fr));">
+    <input class="input" placeholder="userId" [(ngModel)]="form.userId" />
+    <input class="input" placeholder="name" [(ngModel)]="form.name" />
+    <input class="input" placeholder="email" [(ngModel)]="form.email" />
+  </div>
+
+  <div class="toolbar" style="margin-top:12px;">
+    <button class="btn" (click)="create()">Create</button>
+  </div>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+</div>
+
+<table class="table" style="margin-top:14px;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="row" *ngFor="let u of filtered">
+      <td><span class="badge">{{ u.userId }}</span></td>
+      <td>{{ u.name }}</td>
+      <td class="muted">{{ u.email }}</td>
+      <td>
+        <button class="btn danger" (click)="remove(u.userId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

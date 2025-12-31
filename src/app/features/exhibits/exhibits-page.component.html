@@ -1,0 +1,57 @@
+<div class="page-title">Exhibits</div>
+<div class="muted">Create, edit, delete, and search exhibits.</div>
+
+<div class="toolbar">
+  <input class="input" placeholder="Search exhibits…" [(ngModel)]="q" />
+  <button class="btn" (click)="load()">Reload</button>
+  <button class="btn" (click)="startCreate()">New exhibit</button>
+</div>
+
+<div class="card">
+  <h3 style="margin:0 0 10px;">{{ editMode ? 'Edit exhibit' : 'Create exhibit' }}</h3>
+
+  <div class="grid" style="grid-template-columns: repeat(2, minmax(0,1fr));">
+    <input class="input" placeholder="exhibitId" [(ngModel)]="form.exhibitId" />
+    <input class="input" placeholder="name" [(ngModel)]="form.name" />
+    <input class="input" placeholder="audioUrlEnglish" [(ngModel)]="form.audioUrlEnglish" />
+    <input class="input" placeholder="audioUrlMacedonian" [(ngModel)]="form.audioUrlMacedonian" />
+  </div>
+
+  <textarea class="input" style="width:100%; margin-top:10px; min-height:90px;"
+    placeholder="description" [(ngModel)]="form.description"></textarea>
+
+  <div class="toolbar" style="margin-top:12px;">
+    <button class="btn" (click)="save()">{{ editMode ? 'Save changes' : 'Create' }}</button>
+    <span class="badge">createdAt: {{ form.createdAt || '(auto)' }}</span>
+  </div>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+</div>
+
+<table class="table" style="margin-top:14px;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Audio</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="row" *ngFor="let e of filtered">
+      <td><span class="badge">{{ e.exhibitId }}</span></td>
+      <td>{{ e.name }}</td>
+      <td class="muted" style="max-width:420px;">{{ e.description }}</td>
+      <td class="muted" style="max-width:280px;">
+        EN: {{ e.audioUrlEnglish }}<br />
+        MK: {{ e.audioUrlMacedonian }}
+      </td>
+      <td>
+        <button class="btn" (click)="startEdit(e)">Edit</button>
+        <button class="btn danger" style="margin-left:8px;" (click)="remove(e.exhibitId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

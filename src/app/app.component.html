@@ -1,0 +1,28 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-badge">🎧</div>
+      <div class="brand-text">
+        <div class="title">Museum Dashboard</div>
+        <div class="subtitle">Audio Exhibit Library</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/exhibits" routerLinkActive="active">Exhibits</a>
+      <a routerLink="/users" routerLinkActive="active">Users</a>
+      <a routerLink="/bookmarks" routerLinkActive="active">Bookmarks</a>
+      <a routerLink="/logs" routerLinkActive="active">Playback logs</a>
+    </nav>
+
+    <div class="footer-hint">
+      <div class="pill">API: localhost:8080</div>
+      <div class="pill">Header: X-API-Key</div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
